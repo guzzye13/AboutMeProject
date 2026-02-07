@@ -8,10 +8,15 @@ body{
     width: 200px;
     height: 100vh;
     background-color: red;
-    padding: 20px;
+    padding: 5px;
+
+    position: sticky;
+    
+
 }
 
 .sidebar ul{
+    list-style: none;
     padding: 0;
 }
 
@@ -21,5 +26,15 @@ body{
 
 .sidebar a{
     text-decoration: none;
-    color:blueviolet
+    color:blueviolet;
+    font-weight: bold;
+}
+
+main{
+   /* margin-left: 15px; */
+    padding:20px;
+}
+
+section{
+    margin-bottom: 60px
 }
