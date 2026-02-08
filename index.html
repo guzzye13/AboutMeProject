@@ -4,16 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>About Eddy Guzman</title>
+    <title>About Me Project</title>
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-    <nav class="sidebar">
-        <ul>
-            <li><a href="#firstSection">FirstSection</a></li>
-        </ul>
-    </nav>
+    <header class="top-nav">
+        <input type="checkbox" id="menu-toggle"/>
+        <label for="menu-toggle" class="menu-icon">=</label>
+
+        <nav class="dropdown">
+            <ul>
+                <li><a href="#firstSection">FirstSection</a></li>
+            </ul>
+        </nav>
+    </header>
+
 
     <main>
         <h1>Hello Friends I'm Eddy Guzman👋</h1>
@@ -25,6 +31,80 @@
     
         <footer>Learning Goals</footer>
     </main>
+    <!--This needs to be placed at the bottom, #menu-toggle needs to exist-->
+    <script src="menu.js"></script>
     <!--  <script src ="assignments.js"></script>-->
   </body>
 </html>
+<!-- 
+    HTML describes structures and meaning, and attributes like class, id, for, href, and type exist so CSS, Javascript and the browser know how to interact with that structure.
+
+    Why do elements have class? 
+        Use class when you want to style or select multiple things
+        Example:
+        html: <header class="top-nav"> <nav class="dropdown">
+        css: .top-nav { background: red; } .dropdown { display: none; }
+    Why?
+        CSS needs something to target
+        you can reuse a class many times 
+        classes are mainly for css + JS
+        class = styling and behavior (reusable)
+    
+
+
+    Why elements have ids?
+        Use id when something must be unique
+        html:<input id="menu-toggle" /> <section id="firstSection"></section>
+        js: document.getElementById("menu-toggle")    
+    Why?
+        JS needs a single, unique element
+        Anchor links need a destination
+        Only one element can have a specfic id 
+        id = unique identifier (only one per page)
+
+
+
+    Why <input> has type and id
+        type tells the browser what kind of input it is (checkbox, text, password, radio)
+        The browser changes behavior automatically and connects it to a <label> JS and CSS
+        Input type = behavior
+        id = identity 
+        html:    <input type="checkbox" id="menu-toggle" />
+
+    
+    Why <label> has for
+        label for ="X" must match id="X"
+        html: <label for="menu-toggle" class="menu-icon">=</label>
+    Why?
+        Clicking the label activates the input
+        This is accessiblity + usability
+        Thats why when your menu opens when clicking the icon
+        label -> for = input id 
+
+    Why <nav> has class?
+        The class lets CSS hide/show it
+        lets JS find it 
+        HTML tag = meaning 
+        class = control
+        html: <nav class="dropdown">
+
+
+    Why <a> has href
+        <a href="#firstSection">FirstSection</a>
+        href="#id" scrolls to the element with that id
+        href -> #id = jump to element
+
+    why <section> has an id
+        <section id="firstSection">
+        Navigation needs a target 
+        Each section is unique 
+        section needs ids to be linkable 
+
+    Cheat sheet:
+        HTML TAGS → structure & meaning
+        class     → styling & JS (reusable)
+        id        → unique element
+        label for → connects to input id
+        input type→ browser behavior
+        href="#id"→ jump to section 
+-->
