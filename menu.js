@@ -4,6 +4,13 @@ const menuIcon = document.querySelector(".menu-icon");
 const menuLinks = document.querySelectorAll(".dropdown a");
 
 
+// Close menu when clicking a link
+menuLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        menuToggle.checked=false;
+    });
+});
+
 // Close menu when clicking outside
 document.addEventListener("mousedown", (event) => {
     if (!menuToggle.checked) return;
@@ -20,9 +27,3 @@ document.addEventListener("mousedown", (event) => {
     menuToggle.checked = false;
 });
 
-// Close menu when clicking a link
-menuLinks.forEach(link => {
-    link.addEventListener("click", () => {
-        menuToggle.checked=false;
-    });
-});
