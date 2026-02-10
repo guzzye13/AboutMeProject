@@ -9,7 +9,7 @@ body{
     display: flex;
     justify-content: center;
     padding: 15px;
-    background-color: red;
+    background-color: #87CEFA;
     z-index: 1000;
 
     position: relative;
@@ -53,6 +53,12 @@ body{
     text-decoration: none;
     color: blueviolet;
     font-weight: bold;
+}
+
+.dropdown a:hover{
+    color: #87CEFA;
+    text-shadow: 0 0 15px #00fff0;
+
 }
 
 main{
