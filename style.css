@@ -1,71 +1,70 @@
-body{
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    flex-direction: column;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
 }
-.top-nav{
-    position:sticky;
-    top:0;
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    background-color: #87CEFA;
-    z-index: 1000;
+.top-nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  background-color: #87cefa;
+  z-index: 1000;
 
-    position: relative;
-}
-
-#menu-toggle{
-    display: none;
+  position: relative;
 }
 
-.menu-icon{
-    font-size: 30px;
-    cursor: pointer;
-    color:white;
-}
-.dropdown{
-    position:absolute;
-    top:60px;
-    display: none;
-    background-color: white;
-    border-radius: 8px;
-    padding: 15px 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+#menu-toggle {
+  display: none;
 }
 
-#menu-toggle:checked + .menu-icon + .dropdown{
-    display: block;
+.menu-icon {
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+}
+.dropdown {
+  position: absolute;
+  top: 60px;
+  display: none;
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
+#menu-toggle:checked + .menu-icon + .dropdown {
+  display: block;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
 }
 
 .dropdown li {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
-.dropdown a{
-    text-decoration: none;
-    color: blueviolet;
-    font-weight: bold;
+.dropdown a {
+  text-decoration: none;
+  color: blueviolet;
+  font-weight: bold;
 }
 
-.dropdown a:hover{
-    color: #87CEFA;
-    text-shadow: 0 0 15px #00fff0;
-
+.dropdown a:hover {
+  color: light-dark(#333b3c, #efefec);
+  background-color: light-dark(#efedea, #223a2c);
 }
 
-main{
-   /* margin-left: 15px; */
-    padding:20px;
+main {
+  /* margin-left: 15px; */
+  padding: 20px;
 }
 
-section{
-    margin-bottom: 60px
+section {
+  margin-bottom: 60px;
 }
