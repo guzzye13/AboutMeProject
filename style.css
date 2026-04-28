@@ -3,6 +3,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   flex-direction: column;
 }
+.app {
+  background-color: #87cefa;
+}
+
 .top-nav {
   position: sticky;
   top: 0;
