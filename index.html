@@ -16,11 +16,17 @@
   </head>
   <body>
     <div class="top-navbar">
-      <label class="toggle_container">
-        <input type="checkbox" class="toggle__input" />
-        <span class="slider"></span>
-      </label>
-      <nav>
+      <div class="toggle-wrapper">
+        <label class="toggle_container">
+          <input type="checkbox" class="toggle__input" id="darkModeToggle" />
+          <span class="slider"></span>
+        </label>
+        <p id="modeLabel">Light Mode Enabled</p>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <nav id="main-nav">
         <ul class="nav-links">
           <li>
             <a href="#home"><i class="fa-solid fa-house"></i>Home</a>
