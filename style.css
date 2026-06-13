@@ -1,83 +1,164 @@
-/* Light mode (default */
+/* ================================
+   CSS CUSTOM PROPERTIES (THEMES)
+   ================================ */
+
+/* Defined at the root so every element on the page can access and inherit these values
+   without needing to hardcode colors in multiple places — change once, updates everywhere */
 :root {
-  --bg-color: rgba(255, 255, 255, 0.527);
-  --text-color: #111111;
-  --navbar-bg: rgb(104, 63, 155);
-  --navbar-link: #efedea;
-  --navbar-hover: rgb(218, 183, 230);
+  --bg-color: rgba(
+    255,
+    255,
+    255,
+    0.527
+  ); /* Slightly transparent so any background behind the page can bleed through */
+  --text-color: #111111; /* Near-black instead of pure black to be easier on the eyes */
+  --navbar-bg: rgb(104, 63, 155); /* Purple navbar background */
+  --navbar-link: #efedea; /* Off-white so links stand out against the purple background */
+  --navbar-hover: rgb(
+    218,
+    183,
+    230
+  ); /* Lighter purple on hover to signal the link is interactive */
 }
 
+/* Overrides only the color variables so the rest of the CSS stays the same —
+   this way we don't need a whole separate stylesheet just for dark mode */
 body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #f0f0f0;
-  --navbar-bg: #1a0a2e;
-  --navbar-link: #d4b8f0;
-  --navbar-hover: #a87fd4;
+  --bg-color: #121212; /* Dark enough to reduce eye strain in low light */
+  --text-color: #f0f0f0; /* Slightly off-white to avoid harsh contrast against the dark background */
+  --navbar-bg: #1a0a2e; /* Deeper purple to feel consistent with the light mode navbar but darker */
+  --navbar-link: #d4b8f0; /* Softer lavender so links remain readable without being too bright */
+  --navbar-hover: #a87fd4; /* Slightly deeper than the link color so hover still feels like a change */
 }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  flex-direction: column;
-  background: var(--bg-color);
-  color: var(--text-color);
-}
+/* ================================
+   RESET & BASE
+   ================================ */
+
+/* Browsers apply their own default margin and padding to elements which causes
+   inconsistent spacing — wiping them here gives us a clean predictable baseline.
+   Border-box means padding is included in the element width so layout math is simpler */
 * {
-  /* Remove browser defaults */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Font set here on body so all child elements inherit it automatically
+   rather than needing to set font-family on every individual element */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column; /* Stack children vertically when flex is applied */
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Padding keeps the content from sitting flush against the screen edges
+   which would make it hard to read on mobile */
+main {
+  padding: 20px;
+}
+
+/* ================================
+   NAVBAR
+   ================================ */
+
+/* Width 100% ensures the navbar stretches edge to edge regardless of screen size
+   Flex is used so the toggle, links, and hamburger can sit side by side and align easily */
 .top-navbar {
-  /* Give the navbar a background that fills edge to edge */
   background-color: var(--navbar-bg);
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem; /* Top/bottom padding gives it height, left/right keeps content away from edges */
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  align-items: center; /* Vertically centers all children so nothing looks misaligned */
+  gap: 2rem; /* Keeps the toggle, nav, and hamburger from sitting right next to each other */
 }
 
-.toggle-wrapper {
+/* flex: 1 makes the nav grow to fill whatever space is left between the toggle and hamburger
+   justify-content centers the links inside that space */
+nav {
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-}
-
-#modeLabel {
-  font-size: 0.75rem;
-  color: var(--navbar-link);
-  white-space: nowrap;
-}
-
-.nav-links {
-  list-style: none;
-
-  /* Make items horizontal */
-  display: flex;
-  gap: 4rem;
   justify-content: center;
 }
 
+/* ================================
+   NAV LINKS
+   ================================ */
+
+/* list-style removes the bullet points that <ul> adds by default
+   Flex makes the links sit horizontally instead of stacking vertically */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 4rem; /* Wide gap so links don't feel cramped and are easy to click */
+  justify-content: center;
+}
+
+/* Color comes from the variable so it automatically updates when dark mode is toggled */
 .nav-links a {
   color: var(--navbar-link);
 }
 
+/* Different color on hover gives users visual feedback that the link is clickable */
 .nav-links a:hover {
   color: var(--navbar-hover);
 }
 
+/* Small gap between the icon and the link text so they don't sit right against each other */
 .nav-links a i {
   margin-right: 6px;
 }
 
+/* ================================
+   HAMBURGER BUTTON
+   ================================ */
+
+/* Hidden on desktop because the full nav links are visible —
+   only shown on mobile where there isn't enough room for all links side by side */
+.hamburger {
+  display: none;
+  background: none; /* Removes the default grey button background browsers apply */
+  border: none; /* Removes the default button border browsers apply */
+  cursor: pointer; /* Shows a hand cursor so users know it's clickable */
+  font-size: 1.5rem; /* Controls the icon size since Font Awesome icons scale with font-size */
+  color: var(--navbar-link);
+  position: relative;
+  z-index: 10; /* Keeps the button above other elements so it never gets covered and stops working */
+}
+
+/* ================================
+   DARK MODE TOGGLE
+   ================================ */
+
+/* Column direction stacks the switch above the label text
+   rather than placing them side by side which would look cluttered */
+.toggle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px; /* Enough space so the label doesn't feel attached to the switch */
+}
+
+/* Small font so it doesn't compete visually with the nav links
+   white-space: nowrap stops "Dark Mode Enabled" from splitting across two lines */
+#modeLabel {
+  font-size: 0.75rem;
+  color: var(--navbar-link);
+  white-space: nowrap;
+  margin-top: 4px;
+  text-align: left;
+}
+
+/* Relative positioning here creates the containing block for the absolutely
+   positioned slider inside — without this the slider would position against the page */
 .toggle__container {
   position: relative;
   width: 50px;
 }
 
+/* Moved off screen with position absolute instead of display:none
+   so the checkbox stays in the accessibility tree and works with keyboards and screen readers */
 .toggle__input {
   position: absolute;
   top: -9999px;
@@ -85,117 +166,112 @@ body {
   opacity: 0;
 }
 
+/* The visible track of the toggle — styled as a rounded pill
+   The real checkbox is hidden so this is what users actually see and interact with */
 .slider {
   position: absolute;
   display: flex;
   cursor: pointer;
   width: 50px;
   height: 25px;
-  border-radius: 100px;
-  background-color: #bfbfbf;
-  /* position: relative; */
+  border-radius: 100px; /* High value guarantees fully rounded ends regardless of height */
+  background-color: #bfbfbf; /* Neutral grey when off so it doesn't suggest dark mode is already on */
   transition:
     background 0.2s,
-    box-shadow,
-    0.2s;
+    /* Smooth color shift when toggled so it doesn't feel jarring */ box-shadow
+      0.2s;
 }
 
+/* The circular knob inside the track — uses ::before so we don't need an extra HTML element */
 .slider::before {
-  content: "";
+  content: ""; /* Required for ::before to render even though it has no text */
   position: absolute;
   top: 2px;
-  left: 2px;
+  left: 2px; /* Starts on the left side to represent the off/light state */
   width: 21px;
   height: 21px;
-  border-radius: 45px;
-  transition: 0.2s;
+  border-radius: 45px; /* Makes it a circle */
   background: white;
-  box-shadow: 0 2px 4px 0 rgb(0, 35, 11, 0.2);
+  box-shadow: 0 2px 4px 0 rgb(0, 35, 11, 0.2); /* Subtle shadow lifts the knob visually off the track */
+  transition: 0.2s; /* Animates the slide so it moves smoothly instead of jumping */
 }
 
+/* When the hidden checkbox is checked, change the track to purple
+   to visually confirm dark mode is now active */
 .toggle__input:checked + .slider {
   background: blueviolet;
 }
 
-.toggle__input:checked + .slider:before {
+/* Slide the knob to the right when checked to show the toggle is on
+   translateX(-100%) pulls it back by its own width so it stays inside the track */
+.toggle__input:checked + .slider::before {
   left: calc(100% - 2px);
   transform: translateX(-100%);
 }
 
+/* Glow ring when the toggle is focused via keyboard tab navigation
+   so keyboard users know which element is currently active */
 .toggle__input:focus + .slider {
   box-shadow: 0 0 0 2px rgb(214, 170, 225, 0.2);
 }
 
+/* Different glow when focused while already in dark mode
+   so the focus ring still contrasts against the purple track */
 .toggle__input:focus:checked + .slider {
   box-shadow: 0 0 0 2px rgb(138, 43, 226, 0.2);
 }
 
-.slider:active:before {
+/* Temporarily widens the knob while clicking to mimic a physical button press
+   giving the toggle a more tactile satisfying feel */
+.slider:active::before {
   width: 28px;
 }
 
-#modeLabel {
-  font-size: 0.75rem;
-  color: var(--navbar-link);
-  margin-top: 4px;
-  text-align: left;
-}
+/* ================================
+   RESPONSIVE — MOBILE (max 800px)
+   ================================ */
 
-nav {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-main {
-  /* margin-left: 15px; */
-  padding: 20px;
-}
-
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: var(--navbar-link);
-  z-index: 10;
-  position: relative;
-}
-
+/* Everything inside this block only applies when the screen is 800px or narrower
+   so desktop layout is completely unaffected */
 @media (max-width: 800px) {
+  /* flex-wrap allows children to spill onto a second row when they don't all fit
+     space-between pushes the toggle and hamburger to opposite ends of the first row */
   .top-navbar {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
   }
+
+  /* Reveal the hamburger on mobile since the full nav links are now hidden */
   .hamburger {
     display: block;
+    order: 2; /* Placed on the right — toggle is order 1 on the left */
   }
 
+  /* Nav is hidden until the hamburger is clicked — JS adds .open to reveal it
+     width 100% forces it onto its own row below the toggle and hamburger */
   #main-nav {
     display: none;
     width: 100%;
+    order: 3; /* Always sits below the first row containing the toggle and hamburger */
   }
 
+  /* JS toggles this class to show the nav when the hamburger is clicked */
   #main-nav.open {
     display: block;
   }
 
+  /* Stack links vertically on mobile since there isn't enough horizontal space
+     center aligned so they don't sit awkwardly to one side */
   .nav-links {
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 0;
+    gap: 1rem; /* Tighter gap than desktop since links are now stacked vertically */
+    padding: 1rem 0; /* Breathing room above and below the link list */
     align-items: center;
   }
 
+  /* Toggle sits on the left side of the navbar row */
   .toggle-wrapper {
     order: 1;
-  }
-  .hamburger {
-    order: 2;
-  }
-  #main-nav {
-    order: 3;
   }
 }

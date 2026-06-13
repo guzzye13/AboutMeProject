@@ -1,52 +1,50 @@
-// Wait until the entire HTML page is fully loaded before running the script
+// Wait until the full HTML is parsed before running any JS —
+// without this, getElementById would return null because the elements don't exist yet
 document.addEventListener("DOMContentLoaded", function () {
-  // Dark mode toggle checkbox from DOM
+  // Cached here at the top so we don't query the DOM repeatedly on every interaction
   const toggle = document.getElementById("darkModeToggle");
-  // Label that displays "Ligh Mode" or "Dark Mode" text
   const modeLabel = document.getElementById("modeLabel");
-  // Hamburger button element
   const hamburger = document.getElementById("hamburger");
-  // Nav menu that holds all links
   const mainNav = document.getElementById("main-nav");
 
-  /**
-   * Event listener for the dark mode toggle switch. When the checkbox state changes, it toggles the "dark-mode" class on the body element and updates the label text accordingly.
-   */
+  // "change" fires only when the checkbox value actually changes —
+  // more reliable than "click" which can fire without the value changing
   toggle.addEventListener("change", function () {
     if (this.checked) {
-      // Toggle is on: add "dark-mode" class to body and update label
+      // Adding the class to body triggers all the CSS variable overrides in body.dark-mode
       document.body.classList.add("dark-mode");
+      // Update the label so the user knows what mode they just switched to
       modeLabel.textContent = "Dark Mode Enabled";
     } else {
-      // Toggle is off: remove "dark-mode" class from body and update label
+      // Removing the class reverts all variables back to the :root defaults
       document.body.classList.remove("dark-mode");
       modeLabel.textContent = "Light Mode Enabled";
     }
   });
 
-  /**
-   * Listen for a click on the hamburger button.
-   */
+  // Toggle uses classList.toggle so one listener handles both open and close —
+  // no need for separate open/close buttons or tracking state manually
   hamburger.addEventListener("click", function () {
-    // Togggle the "open" class on the nav menu to show or hide it
     mainNav.classList.toggle("open");
   });
 
-  // Loops through each link and attach a click event listener to close the nav menu when a link is clicked
+  // querySelectorAll targets only the <a> tags inside the nav —
+  // we can't attach forEach directly to mainNav because it's a single element not an array
   const navLinks = mainNav.querySelectorAll("a");
+
+  // Each link gets its own listener so any click anywhere in the nav closes the menu —
+  // this way the user doesn't have to manually close it after navigating
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      mainNav.classList.remove("open"); // when a link is clicked, remove the "open" class to close the menu
+      mainNav.classList.remove("open");
     });
   });
 
-  /**
-   * Listen for clicks anywhere on the document. If the click is outside of the nav menu and the hamburger button, close the nav menu by removing the "open" class.
-   */
+  // Attached to the document so every click on the page is caught —
+  // the contains() checks make sure we only close the menu when clicking *outside* it,
+  // so clicking the hamburger or inside the nav still works normally
   document.addEventListener("click", function (e) {
-    // Check if the click was outside both the nav menu and the hamburger button
     if (!mainNav.contains(e.target) && !hamburger.contains(e.target)) {
-      // If the click was outside, remove the "open" class to close the menu
       mainNav.classList.remove("open");
     }
   });
