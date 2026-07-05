@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       // Removing the class reverts all variables back to the :root defaults
       document.body.classList.remove("dark-mode");
-      modeLabel.textContent = "Light Mode Enabled";
     }
   });
 

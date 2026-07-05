@@ -275,3 +275,30 @@ nav {
     order: 1;
   }
 }
+
+/* ================================
+   Home Section
+   ================================ */
+#home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%; /* Makes the image circular */
+  flex-shrink: 0;
+}
+
+h1 {
+  font-size: 35px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#home-introduction {
+  border-top: 2px solid rgba(104, 63, 155, 0.3);
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
